@@ -30,4 +30,4 @@ keymap.set("n", "<C-H>", ":bprevious<CR>")
 
 -- ---------- 插件 ---------- ---
 -- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
+keymap.set("n", "<leader>E", ":NvimTreeToggle<CR>")
