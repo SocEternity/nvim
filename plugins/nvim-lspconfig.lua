@@ -9,6 +9,14 @@ return {
             { "K", false },
           },
         },
+        -- ctags-lsp: 指定 ctags 路径，修复 macOS GUI app PATH 继承问题
+        ctags_lsp = {
+          cmd = { "ctags-lsp", "--ctags-bin", "/opt/homebrew/bin/ctags" },
+        },
+        -- cspell_ls: 指定 node 路径，修复 macOS GUI app PATH 继承问题
+        cspell_ls = {
+          cmd = { "/Users/soc/.nvm/versions/node/v22.14.0/bin/node", vim.fn.stdpath("data") .. "/mason/packages/cspell-lsp/node_modules/@vlabo/cspell-lsp/dist/cspell-lsp.js", "--stdio" },
+        },
         ruff = {
           enabled = true,
           autostart = true,

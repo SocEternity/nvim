@@ -15,37 +15,41 @@
 --   },
 -- }
 
--- 自动开启outline大纲视图配置代码
-
 return {
   {
     "hedyhli/outline.nvim",
-    lazy = false,
-    -- lazy = true,
+    cmd = "Outline",
     keys = {
-      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle Outline" },
-    },
-    config = function()
-      require("outline").setup()
-
-      local group = vim.api.nvim_create_augroup("AutoOutline", { clear = true })
-      vim.api.nvim_create_autocmd("BufEnter", {
-        group = group,
-        callback = function()
-          local ft = vim.bo.filetype
-          if vim.bo.buftype == "" and ft ~= "" and ft ~= "snacks_dashboard" then
-            vim.schedule(function()
-              local win = vim.api.nvim_get_current_win()
-              vim.cmd("OutlineOpen")
-              vim.schedule(function()
-                vim.api.nvim_set_current_win(win)
-              end)
-            end)
-            vim.api.nvim_del_augroup_by_id(group)
+      {
+        "<leader>o",
+        function()
+          local outline = require("outline")
+          if outline.is_open() then
+            outline.close()
+            return
           end
+          -- 检查是否有支持 documentSymbol 的 LSP 已 attach
+          for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+            if c.server_capabilities.documentSymbolProvider then
+              outline.open_outline()
+              return
+            end
+          end
+          -- LSP 还没就绪，延迟重试
+          vim.defer_fn(function()
+            for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+              if c.server_capabilities.documentSymbolProvider then
+                require("outline").open_outline()
+                return
+              end
+            end
+            vim.notify("No LSP with document symbols available", vim.log.levels.WARN, { title = "Outline" })
+          end, 1000)
         end,
-        desc = "首次进入文件缓冲区时自动打开大纲视图",
-      })
-    end,
+        mode = "n",
+        desc = "Toggle Outline",
+      },
+    },
+    opts = {},
   },
 }
