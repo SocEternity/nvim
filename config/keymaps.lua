@@ -65,6 +65,19 @@ end, { desc = "焦点到浮动终端" })
 -- 字符串搜索后的取消高亮
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "字符串搜索后的取消高亮" })
 
+-- 拷贝路径到系统剪贴板
+keymap.set("n", "<leader>yf", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("📋 " .. path)
+end, { desc = "拷贝当前文件路径" })
+
+keymap.set("n", "<leader>yp", function()
+  local dir = vim.fn.expand("%:p:h")
+  vim.fn.setreg("+", dir)
+  vim.notify("📋 " .. dir)
+end, { desc = "拷贝当前文件夹路径" })
+
 -- ---------- undo keymaps ---------- ---
 -- keymap.del("n", "<leader>-") -- 取消分屏键
 
