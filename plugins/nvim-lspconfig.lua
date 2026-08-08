@@ -28,15 +28,12 @@ return {
             },
           },
         },
-        pyright = {
-          -- 确保 pyright 以 pyproject.toml 所在目录作为工作区根目录
-          root_markers = { "pyproject.toml" },
+        basedpyright = {
           settings = {
-            python = {
-              -- 让 pyright 在项目根目录查找 .venv
-              pythonPath = ".venv/bin/python",
-              venvPath = ".",
-              venv = ".venv",
+            basedpyright = {
+              analysis = {
+                diagnosticMode = "openFilesOnly",
+              },
             },
           },
         },

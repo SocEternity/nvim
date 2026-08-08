@@ -40,28 +40,6 @@ keymap.set("n", "K", "15k", { desc = "向上移动15行" })
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "水平新增窗口" }) -- 水平新增窗口
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "垂直新增窗口" }) -- 垂直新增窗口
 
--- 编辑区 与 浮动终端 之间焦点切换
-keymap.set("n", "<leader>th", function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local cfg = vim.api.nvim_win_get_config(win)
-    local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
-    -- 仅普通分屏窗口（relative=""），排除终端和Outline
-    if cfg.relative == "" and ft ~= "snacks_terminal" and ft ~= "Outline" then
-      vim.api.nvim_set_current_win(win)
-      return
-    end
-  end
-end, { desc = "焦点回到编辑区" })
-
-keymap.set("n", "<leader>tl", function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "snacks_terminal" then
-      vim.api.nvim_set_current_win(win)
-      return
-    end
-  end
-end, { desc = "焦点到浮动终端" })
-
 -- 字符串搜索后的取消高亮
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "字符串搜索后的取消高亮" })
 
@@ -106,58 +84,23 @@ keymap.set("n", "<leader>mt", ":MarkdownPreviewToggle<CR>", { desc = "MarkdownPr
 -- 内置: gf=当前窗口, <C-w>gf=新标签
 keymap.set("n", "<leader>gf", "<C-w>gf", { desc = "新标签打开引用文件" })
 
--- 浮动终端（右侧半屏，自动关闭/恢复Outline）
-keymap.set("n", "<leader>tm", function()
+-- 浮动终端（桌面中央，用于调试）
+keymap.set("n", "<leader>tt", function()
   local term, created = Snacks.terminal.get(nil, {
     win = {
       position = "float",
-      width = 0.5,
-      height = 0,
-      row = 0,
-      col = 0.5,
+      width = 0.8,
+      height = 0.8,
+      row = 0.1,
+      col = 0.1,
       enter = true,
       backdrop = false,
+      wo = { winblend = 14 },
     },
   })
-
   if created then
-    local augroup = vim.api.nvim_create_augroup("TermOutline", { clear = true })
-    vim.api.nvim_create_autocmd("BufWinEnter", {
-      group = augroup,
-      buffer = term.buf,
-      callback = function()
-        vim.cmd("OutlineClose")
-      end,
-    })
-    vim.api.nvim_create_autocmd("WinClosed", {
-      group = augroup,
-      buffer = term.buf,
-      callback = function()
-        -- 先记下编辑区窗口
-        local editor_win
-        for _, w in ipairs(vim.api.nvim_list_wins()) do
-          local cfg = vim.api.nvim_win_get_config(w)
-          local ft = vim.bo[vim.api.nvim_win_get_buf(w)].filetype
-          if cfg.relative == "" and ft ~= "snacks_terminal" and ft ~= "Outline" then
-            editor_win = w
-            break
-          end
-        end
-        vim.schedule(function()
-          vim.cmd("OutlineOpen")
-          if editor_win and vim.api.nvim_win_is_valid(editor_win) then
-            vim.defer_fn(function()
-              if vim.api.nvim_win_is_valid(editor_win) then
-                vim.api.nvim_set_current_win(editor_win)
-              end
-            end, 50)
-          end
-        end)
-      end,
-    })
-    -- OutlineClose 可能导致焦点跳转，手动聚焦回终端
-    vim.cmd("OutlineClose")
     vim.schedule(function()
+      vim.wo[term.win].winblend = 10
       term:focus()
     end)
   else
@@ -166,4 +109,4 @@ keymap.set("n", "<leader>tm", function()
       term:focus()
     end
   end
-end, { desc = "切换浮动终端（右侧半屏）" })
+end, { desc = "切换调试终端（桌面中央）" })
