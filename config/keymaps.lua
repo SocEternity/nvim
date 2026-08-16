@@ -32,9 +32,19 @@ keymap.set("n", "<D-v>", '"+p', { desc = "粘贴" })
 keymap.set("v", "<D-c>", '"+y', { desc = "复制" })
 
 -- ---------- 正常模式 ---------- ---
--- J / K 向下/上滚动 15 行
-keymap.set("n", "J", "15j", { desc = "向下移动15行" })
-keymap.set("n", "K", "15k", { desc = "向上移动15行" })
+-- cw 改为 ciw：光标在单词任意位置都能改写整个单词
+keymap.set("n", "cw", "ciw", { desc = "改写整个单词" })
+
+-- J / K 向下/上滚动 10 行
+keymap.set("n", "J", "10j", { desc = "向下移动10行" })
+
+-- K：全局映射 + 每个 LSP buffer 里强制覆盖 hover
+keymap.set("n", "K", "10k", { desc = "向上移动10行" })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.keymap.set("n", "K", "10k", { buffer = args.buf, desc = "向上移动10行" })
+  end,
+})
 
 -- 窗口
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "水平新增窗口" }) -- 水平新增窗口
@@ -76,9 +86,9 @@ keymap.set("n", "<leader>ya", "<cmd>Yazi cwd<cr>", { desc = "打开nvim工作目
 keymap.set("n", "<leader>yz", "<cmd>Yazi toggle<cr>", { desc = "继续上次yazi会话" })
 
 -- markdownperview
-keymap.set("n", "<leader>mm", ":MarkdownPreview<CR>", { desc = "MarkdownPreview" })
-keymap.set("n", "<leader>ms", ":MarkdownPreviewStop<CR>", { desc = "MarkdownPreviewStop" })
-keymap.set("n", "<leader>mt", ":MarkdownPreviewToggle<CR>", { desc = "MarkdownPreviewToggle" })
+keymap.set("n", "<leader>mm", ":MarkdownPreview<CR>", { desc = "开启Markdown预览" })
+keymap.set("n", "<leader>ms", ":MarkdownPreviewStop<CR>", { desc = "关闭Markdown预览" })
+keymap.set("n", "<leader>mt", ":MarkdownPreviewToggle<CR>", { desc = "切换Markdown预览" })
 
 -- gf (goto file): 打开光标下的引用文件
 -- 内置: gf=当前窗口, <C-w>gf=新标签

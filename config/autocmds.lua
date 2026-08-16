@@ -16,6 +16,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "保存文件前自动格式化代码",
 })
 
+-- Python 文件关闭 inlay hints（隐藏 -> None 等返回类型提示）
+vim.api.nvim_create_autocmd("LspAttach", {
+  pattern = "python",
+  callback = function(args)
+    vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+  end,
+  desc = "Python: 关闭 inlay hints",
+})
+
 -- 启动时自动打开文件树
 if vim.fn.argc() == 0 then
   vim.schedule(function()

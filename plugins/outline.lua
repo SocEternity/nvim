@@ -5,7 +5,7 @@
 --     config = function()
 --       -- Example mapping to toggle outline
 --       vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", {
---         desc = "Toggle Outline",
+--         desc = "切换大纲视图",
 --       })
 --
 --       require("outline").setup({
@@ -47,7 +47,7 @@ return {
           end, 1000)
         end,
         mode = "n",
-        desc = "Toggle Outline",
+        desc = "切换大纲视图",
       },
     },
     opts = {},
