@@ -54,7 +54,7 @@ return {
       {
         "<leader>fp",
         function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
+        desc = "查找插件文件",
       },
     },
     -- change some options
@@ -89,8 +89,8 @@ return {
       init = function()
         require("lazyvim.util").lsp.on_attach(function(_, buffer)
           -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "整理导入" })
+          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "重命名文件", buffer = buffer })
         end)
       end,
     },

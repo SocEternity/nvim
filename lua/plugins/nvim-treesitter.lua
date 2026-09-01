@@ -8,6 +8,8 @@ return {
       },
       ensure_installed = {
         "kitty",
+        "markdown",
+        "markdown_inline",
       },
     },
     init = function()
@@ -27,7 +29,8 @@ return {
           end
           local lines = vim.api.nvim_buf_get_lines(ev.buf, 0, 20, false)
           local content = table.concat(lines, "\n")
-          if content:find("font_family")
+          if
+            content:find("font_family")
             or content:find("font_size")
             or content:find("window_padding_width")
             or content:find("kitty_mod")

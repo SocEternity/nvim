@@ -62,35 +62,35 @@ return {
       function()
         Snacks.picker.smart()
       end,
-      desc = "Smart Find Files智能查找文件",
+      desc = "智能查找文件",
     },
     {
       "<leader>,",
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers缓冲区",
+      desc = "缓冲区列表",
     },
     {
       "<leader>/",
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep",
+      desc = "全局搜索",
     },
     {
       "<leader>:",
       function()
         Snacks.picker.command_history()
       end,
-      desc = "Command History命令历史",
+      desc = "命令历史",
     },
     {
       "<leader>n",
       function()
         Snacks.picker.notifications()
       end,
-      desc = "Notification History通知历史",
+      desc = "通知历史",
     },
     {
       "<leader>e",
@@ -101,7 +101,7 @@ return {
         end
         Snacks.explorer({ cwd = cwd })
       end,
-      desc = "File Explorer文件资源管理器",
+      desc = "文件资源管理器",
     },
     -- find
     {
@@ -109,42 +109,42 @@ return {
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers缓冲区",
+      desc = "缓冲区列表",
     },
     {
       "<leader>fc",
       function()
         Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
       end,
-      desc = "Find Config File查找配置文件",
+      desc = "查找配置文件",
     },
     {
       "<leader>ff",
       function()
         Snacks.picker.files()
       end,
-      desc = "Find Files文件查找",
+      desc = "查找文件",
     },
     {
       "<leader>fg",
       function()
         Snacks.picker.git_files()
       end,
-      desc = "Find Git Files查找Git文件",
+      desc = "查找Git文件",
     },
     {
       "<leader>fp",
       function()
         Snacks.picker.projects()
       end,
-      desc = "Projects项目",
+      desc = "项目列表",
     },
     {
       "<leader>fr",
       function()
         Snacks.picker.recent()
       end,
-      desc = "Recent最近",
+      desc = "最近文件",
     },
     -- git
     {
@@ -152,49 +152,49 @@ return {
       function()
         Snacks.picker.git_branches()
       end,
-      desc = "Git Branches Git分支",
+      desc = "Git分支",
     },
     {
       "<leader>gl",
       function()
         Snacks.picker.git_log()
       end,
-      desc = "Git Log Git日志",
+      desc = "Git日志",
     },
     {
       "<leader>gL",
       function()
         Snacks.picker.git_log_line()
       end,
-      desc = "Git Log Line Git日志行",
+      desc = "Git日志行",
     },
     {
       "<leader>gs",
       function()
         Snacks.picker.git_status()
       end,
-      desc = "Git Status Git状态",
+      desc = "Git状态",
     },
     {
       "<leader>gS",
       function()
         Snacks.picker.git_stash()
       end,
-      desc = "Git Stash",
+      desc = "Git暂存",
     },
     {
       "<leader>gd",
       function()
         Snacks.picker.git_diff()
       end,
-      desc = "Git Diff (Hunks)",
+      desc = "Git差异",
     },
     {
       "<leader>gf",
       function()
         Snacks.picker.git_log_file()
       end,
-      desc = "Git Log File",
+      desc = "Git文件日志",
     },
     -- gh
     {
@@ -202,28 +202,28 @@ return {
       function()
         Snacks.picker.gh_issue()
       end,
-      desc = "GitHub Issues (open)",
+      desc = "GitHub Issues（开启）",
     },
     {
       "<leader>gI",
       function()
         Snacks.picker.gh_issue({ state = "all" })
       end,
-      desc = "GitHub Issues (all)",
+      desc = "GitHub Issues（全部）",
     },
     {
       "<leader>gp",
       function()
         Snacks.picker.gh_pr()
       end,
-      desc = "GitHub Pull Requests (open)",
+      desc = "GitHub PR（开启）",
     },
     {
       "<leader>gP",
       function()
         Snacks.picker.gh_pr({ state = "all" })
       end,
-      desc = "GitHub Pull Requests (all)",
+      desc = "GitHub PR（全部）",
     },
     -- Grep
     {
@@ -231,28 +231,28 @@ return {
       function()
         Snacks.picker.lines()
       end,
-      desc = "Buffer Lines",
+      desc = "缓冲区行",
     },
     {
       "<leader>sB",
       function()
         Snacks.picker.grep_buffers()
       end,
-      desc = "Grep Open Buffers",
+      desc = "搜索打开的缓冲区",
     },
     {
       "<leader>sg",
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep",
+      desc = "全局搜索",
     },
     {
       "<leader>sw",
       function()
         Snacks.picker.grep_word()
       end,
-      desc = "Visual selection or word",
+      desc = "搜索选中或光标单词",
       mode = { "n", "x" },
     },
     -- search
@@ -261,147 +261,147 @@ return {
       function()
         Snacks.picker.registers()
       end,
-      desc = "Registers",
+      desc = "寄存器",
     },
     {
       "<leader>s/",
       function()
         Snacks.picker.search_history()
       end,
-      desc = "Search History",
+      desc = "搜索历史",
     },
     {
       "<leader>sa",
       function()
         Snacks.picker.autocmds()
       end,
-      desc = "Autocmds",
+      desc = "自动命令",
     },
     {
       "<leader>sb",
       function()
         Snacks.picker.lines()
       end,
-      desc = "Buffer Lines",
+      desc = "缓冲区行",
     },
     {
       "<leader>sc",
       function()
         Snacks.picker.command_history()
       end,
-      desc = "Command History",
+      desc = "命令历史",
     },
     {
       "<leader>sC",
       function()
         Snacks.picker.commands()
       end,
-      desc = "Commands",
+      desc = "命令列表",
     },
     {
       "<leader>sd",
       function()
         Snacks.picker.diagnostics()
       end,
-      desc = "Diagnostics",
+      desc = "诊断信息",
     },
     {
       "<leader>sD",
       function()
         Snacks.picker.diagnostics_buffer()
       end,
-      desc = "Buffer Diagnostics",
+      desc = "缓冲区诊断",
     },
     {
       "<leader>sh",
       function()
         Snacks.picker.help()
       end,
-      desc = "Help Pages",
+      desc = "帮助页面",
     },
     {
       "<leader>sH",
       function()
         Snacks.picker.highlights()
       end,
-      desc = "Highlights",
+      desc = "高亮组",
     },
     {
       "<leader>si",
       function()
         Snacks.picker.icons()
       end,
-      desc = "Icons",
+      desc = "图标",
     },
     {
       "<leader>sj",
       function()
         Snacks.picker.jumps()
       end,
-      desc = "Jumps",
+      desc = "跳转列表",
     },
     {
       "<leader>sk",
       function()
         Snacks.picker.keymaps()
       end,
-      desc = "Keymaps",
+      desc = "快捷键",
     },
     {
       "<leader>sl",
       function()
         Snacks.picker.loclist()
       end,
-      desc = "Location List",
+      desc = "位置列表",
     },
     {
       "<leader>sm",
       function()
         Snacks.picker.marks()
       end,
-      desc = "Marks",
+      desc = "标记",
     },
     {
       "<leader>sM",
       function()
         Snacks.picker.man()
       end,
-      desc = "Man Pages",
+      desc = "手册页",
     },
     {
       "<leader>sp",
       function()
         Snacks.picker.lazy()
       end,
-      desc = "Search for Plugin Spec",
+      desc = "搜索插件",
     },
     {
       "<leader>sq",
       function()
         Snacks.picker.qflist()
       end,
-      desc = "Quickfix List",
+      desc = "快速修复列表",
     },
     {
       "<leader>sR",
       function()
         Snacks.picker.resume()
       end,
-      desc = "Resume",
+      desc = "恢复上次搜索",
     },
     {
       "<leader>su",
       function()
         Snacks.picker.undo()
       end,
-      desc = "Undo History",
+      desc = "撤销历史",
     },
     {
       "<leader>uC",
       function()
         Snacks.picker.colorschemes()
       end,
-      desc = "Colorschemes",
+      desc = "配色方案",
     },
     -- LSP
     {
@@ -409,14 +409,14 @@ return {
       function()
         Snacks.picker.lsp_definitions()
       end,
-      desc = "Goto Definition",
+      desc = "跳转到定义",
     },
     {
       "gD",
       function()
         Snacks.picker.lsp_declarations()
       end,
-      desc = "Goto Declaration",
+      desc = "跳转到声明",
     },
     {
       "gr",
@@ -424,49 +424,49 @@ return {
         Snacks.picker.lsp_references()
       end,
       nowait = true,
-      desc = "References",
+      desc = "引用",
     },
     {
       "gI",
       function()
         Snacks.picker.lsp_implementations()
       end,
-      desc = "Goto Implementation",
+      desc = "跳转到实现",
     },
     {
       "gy",
       function()
         Snacks.picker.lsp_type_definitions()
       end,
-      desc = "Goto T[y]pe Definition",
+      desc = "跳转到类型定义",
     },
     {
       "gai",
       function()
         Snacks.picker.lsp_incoming_calls()
       end,
-      desc = "C[a]lls Incoming",
+      desc = "传入调用",
     },
     {
       "gao",
       function()
         Snacks.picker.lsp_outgoing_calls()
       end,
-      desc = "C[a]lls Outgoing",
+      desc = "传出调用",
     },
     {
       "<leader>ss",
       function()
         Snacks.picker.lsp_symbols()
       end,
-      desc = "LSP Symbols",
+      desc = "LSP符号",
     },
     {
       "<leader>sS",
       function()
         Snacks.picker.lsp_workspace_symbols()
       end,
-      desc = "LSP Workspace Symbols",
+      desc = "LSP工作区符号",
     },
     -- Other
     {
@@ -474,56 +474,56 @@ return {
       function()
         Snacks.zen()
       end,
-      desc = "Toggle Zen Mode",
+      desc = "切换禅模式",
     },
     {
       "<leader>Z",
       function()
         Snacks.zen.zoom()
       end,
-      desc = "Toggle Zoom",
+      desc = "切换缩放",
     },
     {
       "<leader>.",
       function()
         Snacks.scratch()
       end,
-      desc = "Toggle Scratch Buffer",
+      desc = "切换临时缓冲区",
     },
     {
       "<leader>S",
       function()
         Snacks.scratch.select()
       end,
-      desc = "Select Scratch Buffer",
+      desc = "选择临时缓冲区",
     },
     {
       "<leader>n",
       function()
         Snacks.notifier.show_history()
       end,
-      desc = "Notification History",
+      desc = "通知历史",
     },
     {
       "<leader>bd",
       function()
         Snacks.bufdelete()
       end,
-      desc = "Delete Buffer",
+      desc = "删除缓冲区",
     },
     {
       "<leader>cR",
       function()
         Snacks.rename.rename_file()
       end,
-      desc = "Rename File",
+      desc = "重命名文件",
     },
     {
       "<leader>gB",
       function()
         Snacks.gitbrowse()
       end,
-      desc = "Git Browse",
+      desc = "Git在线浏览",
       mode = { "n", "v" },
     },
     {
@@ -538,14 +538,14 @@ return {
       function()
         Snacks.notifier.hide()
       end,
-      desc = "Dismiss All Notifications",
+      desc = "关闭所有通知",
     },
     {
       "<c-/>",
       function()
         Snacks.terminal()
       end,
-      desc = "Toggle Terminal",
+      desc = "切换终端",
     },
     {
       "<c-_>",
@@ -559,7 +559,7 @@ return {
       function()
         Snacks.words.jump(vim.v.count1)
       end,
-      desc = "Next Reference",
+      desc = "下一个引用",
       mode = { "n", "t" },
     },
     {
@@ -567,12 +567,12 @@ return {
       function()
         Snacks.words.jump(-vim.v.count1)
       end,
-      desc = "Prev Reference",
+      desc = "上一个引用",
       mode = { "n", "t" },
     },
     {
       "<leader>N",
-      desc = "Neovim News",
+      desc = "Neovim更新日志",
       function()
         Snacks.win({
           file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
